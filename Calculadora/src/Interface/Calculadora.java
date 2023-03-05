@@ -1,12 +1,16 @@
 package Interface;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import java.awt.Font;
 
 /**
  *
  * @author Gabriel de Souza
  */
 public class Calculadora extends javax.swing.JFrame {
+    
+    private double numAnterior = 0;
+    private String numResult = "Sem Valor";
     
     public Calculadora() {
         initComponents();
@@ -41,6 +45,7 @@ public class Calculadora extends javax.swing.JFrame {
         btPotencia = new javax.swing.JButton();
         btVirgula = new javax.swing.JButton();
         btDeletar = new javax.swing.JButton();
+        lbErro = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         Calculadora = new javax.swing.JMenu();
 
@@ -56,20 +61,40 @@ public class Calculadora extends javax.swing.JFrame {
         lbTela.setEditable(false);
         lbTela.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
         lbTela.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
-        lbTela.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        lbTela.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
 
         btDivisao.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btDivisao.setText("/");
         btDivisao.setPreferredSize(new java.awt.Dimension(52, 52));
+        btDivisao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btDivisaoActionPerformed(evt);
+            }
+        });
 
         btMultiplicacao.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btMultiplicacao.setText("*");
+        btMultiplicacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btMultiplicacaoActionPerformed(evt);
+            }
+        });
 
         btSubtracao.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btSubtracao.setText("-");
+        btSubtracao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSubtracaoActionPerformed(evt);
+            }
+        });
 
         btSoma.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btSoma.setText("+");
+        btSoma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSomaActionPerformed(evt);
+            }
+        });
 
         btNum9.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btNum9.setText("9");
@@ -145,9 +170,19 @@ public class Calculadora extends javax.swing.JFrame {
 
         btNum0.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btNum0.setText("0");
+        btNum0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btNum0ActionPerformed(evt);
+            }
+        });
 
         btEnter.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btEnter.setText("E");
+        btEnter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEnterActionPerformed(evt);
+            }
+        });
 
         btRaiz.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
 
@@ -159,6 +194,8 @@ public class Calculadora extends javax.swing.JFrame {
         btDeletar.setText("D");
         btDeletar.setToolTipText("");
 
+        lbErro.setForeground(new java.awt.Color(255, 102, 102));
+
         javax.swing.GroupLayout telaLayout = new javax.swing.GroupLayout(tela);
         tela.setLayout(telaLayout);
         telaLayout.setHorizontalGroup(
@@ -166,9 +203,11 @@ public class Calculadora extends javax.swing.JFrame {
             .addGroup(telaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(telaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbErro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbTela)
+                    .addComponent(lbCalcAnterior, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(telaLayout.createSequentialGroup()
-                        .addGroup(telaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(telaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(telaLayout.createSequentialGroup()
                                 .addComponent(btDivisao, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -209,8 +248,7 @@ public class Calculadora extends javax.swing.JFrame {
                                         .addComponent(btNum8, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(btNum9, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(lbCalcAnterior, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         telaLayout.setVerticalGroup(
@@ -255,7 +293,9 @@ public class Calculadora extends javax.swing.JFrame {
                         .addComponent(btNum0, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btEnter, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbErro, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         Calculadora.setText("Calculadora");
@@ -268,9 +308,9 @@ public class Calculadora extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(8, Short.MAX_VALUE)
                 .addComponent(tela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,76 +324,292 @@ public class Calculadora extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btNum1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNum1ActionPerformed
+        String tam = lbTela.getText();
         try {
+            if (numResult.equals(lbTela.getText())) {
+                lbTela.setText("");
+                lbCalcAnterior.setText("");
+            }
             lbTela.setText(lbTela.getText() + "1");
+            if (tam.length() >= 8) {
+                lbTela.setFont(new Font("Segoe UI", 0, 16));
+            } 
+            if (tam.length() >= 25) {
+                lbErro.setText("* Parte do número não está vísivel!");
+            }
         } catch (Exception e) {
             System.out.println("Ocorreu um Erro: " + e.getMessage());
         }
     }//GEN-LAST:event_btNum1ActionPerformed
 
     private void btNum2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNum2ActionPerformed
+        String tam = lbTela.getText();
         try {
+            if (numResult.equals(lbTela.getText())) {
+                lbTela.setText("");
+                lbCalcAnterior.setText("");
+            }
             lbTela.setText(lbTela.getText() + "2");
+            if (tam.length() >= 8) {
+                lbTela.setFont(new Font("Segoe UI", 0, 16));
+            } 
+            if (tam.length() >= 25) {
+                lbErro.setText("* Parte do número não está vísivel!");
+            }
         } catch (Exception e) {
             System.out.println("Ocorreu um Erro: " + e.getMessage());
         }
     }//GEN-LAST:event_btNum2ActionPerformed
 
     private void btNum3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNum3ActionPerformed
+        String tam = lbTela.getText();
         try {
+            if (numResult.equals(lbTela.getText())) {
+                lbTela.setText("");
+                lbCalcAnterior.setText("");
+            }
             lbTela.setText(lbTela.getText() + "3");
+            if (tam.length() >= 8) {
+                lbTela.setFont(new Font("Segoe UI", 0, 16));
+            } 
+            if (tam.length() >= 25) {
+                lbErro.setText("* Parte do número não está vísivel!");
+            }
         } catch (Exception e) {
             System.out.println("Ocorreu um Erro: " + e.getMessage());
         }
     }//GEN-LAST:event_btNum3ActionPerformed
 
     private void btNum4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNum4ActionPerformed
+        String tam = lbTela.getText();
         try {
+            if (numResult.equals(lbTela.getText())) {
+                lbTela.setText("");
+                lbCalcAnterior.setText("");
+            }
             lbTela.setText(lbTela.getText() + "4");
+            if (tam.length() >= 8) {
+                lbTela.setFont(new Font("Segoe UI", 0, 16));
+            } 
+            if (tam.length() >= 25) {
+                lbErro.setText("* Parte do número não está vísivel!");
+            }
         } catch (Exception e) {
             System.out.println("Ocorreu um Erro: " + e.getMessage());
         }
     }//GEN-LAST:event_btNum4ActionPerformed
 
     private void btNum5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNum5ActionPerformed
+        String tam = lbTela.getText();
         try {
+            if (numResult.equals(lbTela.getText())) {
+                lbTela.setText("");
+                lbCalcAnterior.setText("");
+            }
             lbTela.setText(lbTela.getText() + "5");
+            if (tam.length() >= 8) {
+                lbTela.setFont(new Font("Segoe UI", 0, 16));
+            } 
+            if (tam.length() >= 25) {
+                lbErro.setText("* Parte do número não está vísivel!");
+            }
         } catch (Exception e) {
             System.out.println("Ocorreu um Erro: " + e.getMessage());
         }
     }//GEN-LAST:event_btNum5ActionPerformed
 
     private void btNum6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNum6ActionPerformed
+        String tam = lbTela.getText();
         try {
+            if (numResult.equals(lbTela.getText())) {
+                lbTela.setText("");
+                lbCalcAnterior.setText("");
+            }
             lbTela.setText(lbTela.getText() + "6");
+            if (tam.length() >= 8) {
+                lbTela.setFont(new Font("Segoe UI", 0, 16));
+            } 
+            if (tam.length() >= 25) {
+                lbErro.setText("* Parte do número não está vísivel!");
+            }
         } catch (Exception e) {
             System.out.println("Ocorreu um Erro: " + e.getMessage());
         }
     }//GEN-LAST:event_btNum6ActionPerformed
 
     private void btNum7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNum7ActionPerformed
+        String tam = lbTela.getText();
         try {
+            if (numResult.equals(lbTela.getText())) {
+                lbTela.setText("");
+                lbCalcAnterior.setText("");
+            }
             lbTela.setText(lbTela.getText() + "7");
+            if (tam.length() >= 8) {
+                lbTela.setFont(new Font("Segoe UI", 0, 16));
+            } 
+            if (tam.length() >= 25) {
+                lbErro.setText("* Parte do número não está vísivel!");
+            }
         } catch (Exception e) {
             System.out.println("Ocorreu um Erro: " + e.getMessage());
         }
     }//GEN-LAST:event_btNum7ActionPerformed
 
     private void btNum8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNum8ActionPerformed
+        String tam = lbTela.getText();
         try {
+            if (numResult.equals(lbTela.getText())) {
+                lbTela.setText("");
+                lbCalcAnterior.setText("");
+            }
             lbTela.setText(lbTela.getText() + "8");
+            if (tam.length() >= 8) {
+                lbTela.setFont(new Font("Segoe UI", 0, 16));
+            } 
+            if (tam.length() >= 25) {
+                lbErro.setText("* Parte do número não está vísivel!");
+            }
         } catch (Exception e) {
             System.out.println("Ocorreu um Erro: " + e.getMessage());
         }
     }//GEN-LAST:event_btNum8ActionPerformed
 
     private void btNum9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNum9ActionPerformed
+        String tam = lbTela.getText();
         try {
+            if (numResult.equals(lbTela.getText())) {
+                lbTela.setText("");
+                lbCalcAnterior.setText("");
+            }
             lbTela.setText(lbTela.getText() + "9");
+            if (tam.length() >= 8) {
+                lbTela.setFont(new Font("Segoe UI", 0, 16));
+            } 
+            if (tam.length() >= 25) {
+                lbErro.setText("* Parte do número não está vísivel!");
+            }
         } catch (Exception e) {
             System.out.println("Ocorreu um Erro: " + e.getMessage());
         }
     }//GEN-LAST:event_btNum9ActionPerformed
+
+    private void btNum0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNum0ActionPerformed
+        String tam = lbTela.getText();
+        try {
+            if (numResult.equals(lbTela.getText())) {
+                lbTela.setText("");
+                lbCalcAnterior.setText("");
+            }
+            lbTela.setText(lbTela.getText() + "0");
+            if (tam.length() >= 8) {
+                lbTela.setFont(new Font("Segoe UI", 0, 16));
+            } 
+            if (tam.length() >= 25) {
+                lbErro.setText("* Parte do número não está vísivel!");
+            }
+        } catch (Exception e) {
+            System.out.println("Ocorreu um Erro: " + e.getMessage());
+        }
+    }//GEN-LAST:event_btNum0ActionPerformed
+    
+    private void btSomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSomaActionPerformed
+        String numTela = lbTela.getText();
+        numAnterior = Double.parseDouble(numTela);
+        try {
+            if (lbCalcAnterior.getText().contains(" + ")) {
+                System.out.println("já prescionado!");
+            } else {
+                lbCalcAnterior.setText(numTela + " + ");
+                lbTela.setText("");
+                lbTela.setFont(new Font("Segoe UI", 0, 36));
+                lbErro.setText("");
+            }
+        } catch (Exception e) {
+            System.out.println("Ocorreu um Erro: " + e.getMessage());
+        }
+    }//GEN-LAST:event_btSomaActionPerformed
+
+    private void btEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEnterActionPerformed
+        String numTelaString = lbTela.getText();
+        double numTela = Double.parseDouble(numTelaString);
+        try {
+            if (lbCalcAnterior.getText().contains(" + ")) {
+                double resultado = numAnterior + numTela;
+                String resultTela = String.valueOf(resultado);
+                lbTela.setText(resultTela);
+                numResult = resultTela;
+            } else if (lbCalcAnterior.getText().contains(" - ")) {
+                double resultado = numAnterior - numTela;
+                String resultTela = String.valueOf(resultado);
+                lbTela.setText(resultTela);
+                numResult = resultTela;
+            } else if (lbCalcAnterior.getText().contains(" * ")) {
+                double resultado = numAnterior * numTela;
+                String resultTela = String.valueOf(resultado);
+                lbTela.setText(resultTela);
+                numResult = resultTela;
+            } else if (lbCalcAnterior.getText().contains(" / ")) {
+                double resultado = numAnterior / numTela;
+                String resultTela = String.valueOf(resultado);
+                lbTela.setText(resultTela);
+                numResult = resultTela;
+            }
+        } catch (Exception e) {
+            System.out.println("Ocorreu um Erro: " + e.getMessage());
+        }
+    }//GEN-LAST:event_btEnterActionPerformed
+
+    private void btSubtracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSubtracaoActionPerformed
+        String numTela = lbTela.getText();
+        numAnterior = Double.parseDouble(numTela);
+        try {
+            if (lbCalcAnterior.getText().contains(" - ")) {
+                System.out.println("já prescionado!");
+            } else {
+                lbCalcAnterior.setText(numTela + " - ");
+                lbTela.setText("");
+                lbTela.setFont(new Font("Segoe UI", 0, 36));
+                lbErro.setText("");
+            }
+        } catch (Exception e) {
+            System.out.println("Ocorreu um Erro: " + e.getMessage());
+        }
+    }//GEN-LAST:event_btSubtracaoActionPerformed
+
+    private void btMultiplicacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMultiplicacaoActionPerformed
+        String numTela = lbTela.getText();
+        numAnterior = Double.parseDouble(numTela);
+        try {
+            if (lbCalcAnterior.getText().contains(" * ")) {
+                System.out.println("já prescionado!");
+            } else {
+                lbCalcAnterior.setText(numTela + " * ");
+                lbTela.setText("");
+                lbTela.setFont(new Font("Segoe UI", 0, 36));
+                lbErro.setText("");
+            }
+        } catch (Exception e) {
+            System.out.println("Ocorreu um Erro: " + e.getMessage());
+        }
+    }//GEN-LAST:event_btMultiplicacaoActionPerformed
+
+    private void btDivisaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDivisaoActionPerformed
+        String numTela = lbTela.getText();
+        numAnterior = Double.parseDouble(numTela);
+        try {
+            if (lbCalcAnterior.getText().contains(" / ")) {
+                System.out.println("já prescionado!");
+            } else {
+                lbCalcAnterior.setText(numTela + " / ");
+                lbTela.setText("");
+                lbTela.setFont(new Font("Segoe UI", 0, 36));
+                lbErro.setText("");
+            }
+        } catch (Exception e) {
+            System.out.println("Ocorreu um Erro: " + e.getMessage());
+        }
+    }//GEN-LAST:event_btDivisaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -393,6 +649,7 @@ public class Calculadora extends javax.swing.JFrame {
     private javax.swing.JButton btSubtracao;
     private javax.swing.JButton btVirgula;
     private javax.swing.JLabel lbCalcAnterior;
+    private javax.swing.JLabel lbErro;
     private javax.swing.JFormattedTextField lbTela;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JPanel tela;
