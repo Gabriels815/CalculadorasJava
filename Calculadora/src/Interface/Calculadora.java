@@ -538,21 +538,33 @@ public class Calculadora extends javax.swing.JFrame {
                 double resultado = numAnterior + numTela;
                 String resultTela = String.valueOf(resultado);
                 lbTela.setText(resultTela);
+                if (lbTela.getText().length() >= 8) {
+                    lbTela.setFont(new Font("Segoe UI", 0, 16));
+                }
                 numResult = resultTela;
             } else if (lbCalcAnterior.getText().contains(" - ")) {
                 double resultado = numAnterior - numTela;
                 String resultTela = String.valueOf(resultado);
                 lbTela.setText(resultTela);
+                if (lbTela.getText().length() >= 8) {
+                    lbTela.setFont(new Font("Segoe UI", 0, 16));
+                }
                 numResult = resultTela;
             } else if (lbCalcAnterior.getText().contains(" * ")) {
                 double resultado = numAnterior * numTela;
                 String resultTela = String.valueOf(resultado);
                 lbTela.setText(resultTela);
+                if (lbTela.getText().length() >= 8) {
+                    lbTela.setFont(new Font("Segoe UI", 0, 16));
+                }
                 numResult = resultTela;
             } else if (lbCalcAnterior.getText().contains(" / ")) {
                 double resultado = numAnterior / numTela;
                 String resultTela = String.valueOf(resultado);
                 lbTela.setText(resultTela);
+                if (lbTela.getText().length() >= 8) {
+                    lbTela.setFont(new Font("Segoe UI", 0, 16));
+                }
                 numResult = resultTela;
             }
         } catch (Exception e) {
