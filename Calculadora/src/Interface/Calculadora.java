@@ -43,6 +43,8 @@ public class Calculadora extends javax.swing.JFrame {
         btEnter = new javax.swing.JButton();
         lbErro = new javax.swing.JLabel();
         btVirgula = new javax.swing.JButton();
+        btExpo = new javax.swing.JButton();
+        btLimpa = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         Calculadora = new javax.swing.JMenu();
 
@@ -191,6 +193,22 @@ public class Calculadora extends javax.swing.JFrame {
             }
         });
 
+        btExpo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btExpo.setText("^");
+        btExpo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btExpoActionPerformed(evt);
+            }
+        });
+
+        btLimpa.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btLimpa.setText("L");
+        btLimpa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btLimpaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout telaLayout = new javax.swing.GroupLayout(tela);
         tela.setLayout(telaLayout);
         telaLayout.setHorizontalGroup(
@@ -236,7 +254,11 @@ public class Calculadora extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(btNum9, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btEnter, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(telaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btEnter, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, telaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btLimpa, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btExpo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         telaLayout.setVerticalGroup(
@@ -253,15 +275,21 @@ public class Calculadora extends javax.swing.JFrame {
                     .addComponent(btSubtracao, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btSoma, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(telaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btNum7, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btNum8, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btNum9, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(telaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btNum4, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btNum5, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btNum6, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(telaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(telaLayout.createSequentialGroup()
+                        .addGroup(telaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btNum7, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btNum8, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btNum9, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(telaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btNum4, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btNum5, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btNum6, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(telaLayout.createSequentialGroup()
+                        .addComponent(btExpo, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btLimpa, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(telaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(telaLayout.createSequentialGroup()
@@ -550,7 +578,7 @@ public class Calculadora extends javax.swing.JFrame {
                     lbTela.setFont(new Font("Segoe UI", 0, 16));
                 }
                 numResult = resultTela;
-            }
+            } 
         } catch (Exception e) {
             System.out.println("Ocorreu um Erro: " + e.getMessage());
         }
@@ -622,6 +650,33 @@ public class Calculadora extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btVirgulaActionPerformed
 
+    private void btExpoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExpoActionPerformed
+        String numTela = lbTela.getText();
+        String replaceNumTela = numTela.replace(",", ".");
+        numAnterior = Double.parseDouble(replaceNumTela);
+        try {
+            if (lbCalcAnterior.getText().contains(" ** ")) {
+                System.out.println("já prescionado!");
+            } else {
+                double resultado = numAnterior * numAnterior;
+                String resultTela = String.valueOf(resultado);
+                lbTela.setText(resultTela);
+                if (lbTela.getText().length() >= 8) {
+                    lbTela.setFont(new Font("Segoe UI", 0, 16));
+                numResult = resultTela;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Ocorreu um Erro: " + e.getMessage());
+        }
+    }//GEN-LAST:event_btExpoActionPerformed
+
+    private void btLimpaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimpaActionPerformed
+        lbTela.setText("");
+        lbCalcAnterior.setText("");
+        lbErro.setText("");
+    }//GEN-LAST:event_btLimpaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -642,6 +697,8 @@ public class Calculadora extends javax.swing.JFrame {
     private javax.swing.JMenu Calculadora;
     private javax.swing.JButton btDivisao;
     private javax.swing.JButton btEnter;
+    private javax.swing.JButton btExpo;
+    private javax.swing.JButton btLimpa;
     private javax.swing.JButton btMultiplicacao;
     private javax.swing.JButton btNum0;
     private javax.swing.JButton btNum1;
