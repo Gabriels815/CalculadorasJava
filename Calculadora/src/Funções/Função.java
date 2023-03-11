@@ -1,48 +1,88 @@
 package Funções;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Gabriel de Souza
  */
 public class Função {
+
+    public Função() {}
     
-    private int transInt(double numero) {
-        int numeroInt = (int) numero;
-        return numeroInt;
+    private int convertToInt(double numero) {
+        int resultado = 0;
+        try {
+            resultado = (int) numero;
+            return resultado;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e,"Erro ao realizar operação!", 0);
+        }
+        return resultado;
     }
     
     private boolean isInt(double numero) {
-        String numeroS = String.valueOf(numero);
-        if (numeroS.contains(".0")) {
-            return true;
-        } else {
-            return false;
+        try {
+            String numeroS = String.valueOf(numero);
+            if (numeroS.contains(".0")) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            
         }
+        return false;
     }
     
-    private double soma(double numero1, double numero2) {
-        double resultado = numero1 + numero2;
+    private double somar(double numero1, double numero2) {
+        double resultado = 0.0;
+        try {
+            resultado = numero1 + numero2;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e,"Erro ao realizar operação!", 0);
+        }
         return resultado;
     }
     
-    private double subt(double numero1, double numero2) {
-        double resultado = numero1 - numero2;
+    private double subtrair(double numero1, double numero2) {
+        double resultado = 0.0;
+        try {
+            resultado = numero1 - numero2;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e,"Erro ao realizar operação!", 0);
+        }
         return resultado;
     }
     
-    private double divs(double numero1, double numero2) {
-        double resultado = numero1 / numero2;
+    private double dividir(double numero1, double numero2) {
+        double resultado = 0.0;
+        try {
+            resultado = numero1 / numero2;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e,"Erro ao realizar operação!", 0);
+        }
         return resultado;
     }
     
-    private double mult(double numero1, double numero2) {
-        double resultado = numero1 * numero2;
+    private double multiplicar(double numero1, double numero2) {
+        double resultado = 0.0;
+        try {
+            resultado = numero1 * numero2;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e,"Erro ao realizar operação!", 0);
+        }
         return resultado;
     }
     
     private double convertToDouble(String num) {
-        double numero = Double.valueOf(num);
-        return numero;
+        double resultado = 0.0;
+        try {
+            resultado = Double.valueOf(num);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e,"Erro ao realizar operação!", 0);
+        }
+        return resultado;
     }
     
 }
