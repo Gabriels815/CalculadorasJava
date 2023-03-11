@@ -301,10 +301,10 @@ public class Calculadora extends javax.swing.JFrame {
                         .addGroup(telaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btNum0, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btVirgula, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 1, Short.MAX_VALUE))
                     .addComponent(btEnter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbErro, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                .addComponent(lbErro, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -318,16 +318,15 @@ public class Calculadora extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(9, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(tela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(tela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE)
+                .addComponent(tela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -523,24 +522,6 @@ public class Calculadora extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btNum0ActionPerformed
     
-    private void btSomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSomaActionPerformed
-        String numTela = lbTela.getText();
-        String replaceNumTela = numTela.replace(",", ".");
-        numAnterior = Double.parseDouble(replaceNumTela);
-        try {
-            if (lbCalcAnterior.getText().contains(" + ")) {
-                System.out.println("já prescionado!");
-            } else {
-                lbCalcAnterior.setText(numTela + " + ");
-                lbTela.setText("");
-                lbTela.setFont(new Font("Segoe UI", 0, 36));
-                lbErro.setText("");
-            }
-        } catch (Exception e) {
-            System.out.println("Ocorreu um Erro: " + e.getMessage());
-        }
-    }//GEN-LAST:event_btSomaActionPerformed
-
     private void btEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEnterActionPerformed
         String numTelaString = lbTela.getText();
         String replaceNumTela = numTelaString.replace(",", ".");
@@ -677,6 +658,24 @@ public class Calculadora extends javax.swing.JFrame {
         lbErro.setText("");
     }//GEN-LAST:event_btLimpaActionPerformed
 
+    private void btSomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSomaActionPerformed
+        String numTela = lbTela.getText();
+        String replaceNumTela = numTela.replace(",", ".");
+        numAnterior = Double.parseDouble(replaceNumTela);
+        try {
+            if (lbCalcAnterior.getText().contains(" + ")) {
+                System.out.println("já prescionado!");
+            } else {
+                lbCalcAnterior.setText(numTela + " + ");
+                lbTela.setText("");
+                lbTela.setFont(new Font("Segoe UI", 0, 36));
+                lbErro.setText("");
+            }
+        } catch (Exception e) {
+            System.out.println("Ocorreu um Erro: " + e.getMessage());
+        }
+    }//GEN-LAST:event_btSomaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -692,7 +691,7 @@ public class Calculadora extends javax.swing.JFrame {
             }
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Calculadora;
     private javax.swing.JButton btDivisao;
