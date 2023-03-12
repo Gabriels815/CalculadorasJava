@@ -1,6 +1,5 @@
 package Interface;
 
-import Funções.Operações;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.Font;
 import javax.swing.JOptionPane;
@@ -11,13 +10,12 @@ import javax.swing.JOptionPane;
  */
 public class Calculadora extends javax.swing.JFrame {
     
+    Operações o = new Operações();
+    
     private double numAnterior = 0;
-    private String numResult = "Sem Valor";
     
     private Font fontPequena = new Font("Segoe UI", 0, 16);
     private Font fontNormal = new Font("Segoe UI", 0, 36);
-    
-    private Funções.Operações o = new Operações();
     
     public Calculadora() {
         initComponents();
@@ -363,6 +361,7 @@ public class Calculadora extends javax.swing.JFrame {
         if (lbTela.getText().length() >= 8) {
             lbTela.setFont(fontPequena);
         }
+        enableOperacoes();
     }
     
     private boolean testaTamanho() {
@@ -401,6 +400,22 @@ public class Calculadora extends javax.swing.JFrame {
         btVirgula.setEnabled(true);
     }
     
+    private void disableOperacoes() {
+        btSoma.setEnabled(false);
+        btSubtracao.setEnabled(false);
+        btDivisao.setEnabled(false);
+        btMultiplicacao.setEnabled(false);
+        btExpo.setEnabled(false);
+    }
+    
+    private void enableOperacoes() {
+        btSoma.setEnabled(true);
+        btSubtracao.setEnabled(true);
+        btDivisao.setEnabled(true);
+        btMultiplicacao.setEnabled(true);
+        btExpo.setEnabled(true);
+    }
+    
     private void btNum1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNum1ActionPerformed
         try {
             escreveTela(1);
@@ -408,7 +423,7 @@ public class Calculadora extends javax.swing.JFrame {
                 disableNumeros();
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(btNum1, "Algo deu Errado! ", "Erro Desconhecido! ", 0);
+            JOptionPane.showMessageDialog(btNum1, "Algo deu Errado! \n" + e.getMessage(), "Erro Desconhecido! ", 0);
             limparCampos();
         }
     }//GEN-LAST:event_btNum1ActionPerformed
@@ -420,7 +435,7 @@ public class Calculadora extends javax.swing.JFrame {
                 disableNumeros();
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(btNum1, "Algo deu Errado! ", "Erro Desconhecido! ", 0);
+            JOptionPane.showMessageDialog(btNum2, "Algo deu Errado! \n" + e.getMessage(), "Erro Desconhecido! ", 0);
             limparCampos();
         }
     }//GEN-LAST:event_btNum2ActionPerformed
@@ -432,7 +447,7 @@ public class Calculadora extends javax.swing.JFrame {
                 disableNumeros();
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(btNum1, "Algo deu Errado! ", "Erro Desconhecido! ", 0);
+            JOptionPane.showMessageDialog(btNum3, "Algo deu Errado! \n" + e.getMessage(), "Erro Desconhecido! ", 0);
             limparCampos();
         }
     }//GEN-LAST:event_btNum3ActionPerformed
@@ -444,7 +459,7 @@ public class Calculadora extends javax.swing.JFrame {
                 disableNumeros();
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(btNum1, "Algo deu Errado! ", "Erro Desconhecido! ", 0);
+            JOptionPane.showMessageDialog(btNum4, "Algo deu Errado! \n" + e.getMessage(), "Erro Desconhecido! ", 0);
             limparCampos();
         }
     }//GEN-LAST:event_btNum4ActionPerformed
@@ -456,7 +471,7 @@ public class Calculadora extends javax.swing.JFrame {
                 disableNumeros();
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(btNum1, "Algo deu Errado! ", "Erro Desconhecido! ", 0);
+            JOptionPane.showMessageDialog(btNum5, "Algo deu Errado! \n" + e.getMessage(), "Erro Desconhecido! ", 0);
             limparCampos();
         }
     }//GEN-LAST:event_btNum5ActionPerformed
@@ -468,7 +483,7 @@ public class Calculadora extends javax.swing.JFrame {
                 disableNumeros();
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(btNum1, "Algo deu Errado! ", "Erro Desconhecido! ", 0);
+            JOptionPane.showMessageDialog(btNum6, "Algo deu Errado! \n" + e.getMessage(), "Erro Desconhecido! ", 0);
             limparCampos();
         }
     }//GEN-LAST:event_btNum6ActionPerformed
@@ -480,7 +495,7 @@ public class Calculadora extends javax.swing.JFrame {
                 disableNumeros();
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(btNum1, "Algo deu Errado! ", "Erro Desconhecido! ", 0);
+            JOptionPane.showMessageDialog(btNum7, "Algo deu Errado! \n" + e.getMessage(), "Erro Desconhecido! ", 0);
             limparCampos();
         }
     }//GEN-LAST:event_btNum7ActionPerformed
@@ -492,7 +507,7 @@ public class Calculadora extends javax.swing.JFrame {
                 disableNumeros();
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(btNum1, "Algo deu Errado! ", "Erro Desconhecido! ", 0);
+            JOptionPane.showMessageDialog(btNum8, "Algo deu Errado! \n" + e.getMessage(), "Erro Desconhecido! ", 0);
             limparCampos();
         }
     }//GEN-LAST:event_btNum8ActionPerformed
@@ -504,7 +519,7 @@ public class Calculadora extends javax.swing.JFrame {
                 disableNumeros();
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(btNum1, "Algo deu Errado! ", "Erro Desconhecido! ", 0);
+            JOptionPane.showMessageDialog(btNum9, "Algo deu Errado! \n" + e.getMessage(), "Erro Desconhecido! ", 0);
             limparCampos();
         }
     }//GEN-LAST:event_btNum9ActionPerformed
@@ -516,105 +531,95 @@ public class Calculadora extends javax.swing.JFrame {
                 disableNumeros();
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(btNum1, "Algo deu Errado! ", "Erro Desconhecido! ", 0);
+            JOptionPane.showMessageDialog(btNum0, "Algo deu Errado! \n" + e.getMessage(), "Erro Desconhecido! ", 0);
             limparCampos();
         }
     }//GEN-LAST:event_btNum0ActionPerformed
     
     private void btEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEnterActionPerformed
         String numTelaString = lbTela.getText();
+        String numCalcAnterior = lbCalcAnterior.getText();
         String replaceNumTela = numTelaString.replace(",", ".");
+        String replaceNumCalcAnterior = numCalcAnterior.replace(",", ".");
         double numTela = Double.parseDouble(replaceNumTela);
+        double numCalcAnt = Double.parseDouble(replaceNumCalcAnterior);
         try {
-            if (lbCalcAnterior.getText().contains(" + ")) {
-                double resultado = numAnterior + numTela;
-                String resultTela = String.valueOf(resultado);
-                lbTela.setText(resultTela);
-                if (lbTela.getText().length() >= 8) {
-                    lbTela.setFont(new Font("Segoe UI", 0, 16));
-                }
-                numResult = resultTela;
-            } else if (lbCalcAnterior.getText().contains(" - ")) {
-                double resultado = numAnterior - numTela;
-                String resultTela = String.valueOf(resultado);
-                lbTela.setText(resultTela);
-                if (lbTela.getText().length() >= 8) {
-                    lbTela.setFont(new Font("Segoe UI", 0, 16));
-                }
-                numResult = resultTela;
-            } else if (lbCalcAnterior.getText().contains(" * ")) {
-                double resultado = numAnterior * numTela;
-                String resultTela = String.valueOf(resultado);
-                lbTela.setText(resultTela);
-                if (lbTela.getText().length() >= 8) {
-                    lbTela.setFont(new Font("Segoe UI", 0, 16));
-                }
-                numResult = resultTela;
-            } else if (lbCalcAnterior.getText().contains(" / ")) {
-                double resultado = numAnterior / numTela;
-                String resultTela = String.valueOf(resultado);
-                lbTela.setText(resultTela);
-                if (lbTela.getText().length() >= 8) {
-                    lbTela.setFont(new Font("Segoe UI", 0, 16));
-                }
-                numResult = resultTela;
-            } 
+            if (lbOperacao.getText().equals(" + ")) {
+                double resultado = o.somar(numTela, numCalcAnt);
+                String resultadoS = String.valueOf(resultado);
+                lbTela.setText(resultadoS);
+            } else if (lbOperacao.getText().equals(" - ")) {
+                double resultado = o.subtrair(numTela, numCalcAnt);
+                String resultadoS = String.valueOf(resultado);
+                lbTela.setText(resultadoS);
+            } else if (lbOperacao.getText().equals(" / ")) {
+                double resultado = o.dividir(numTela, numCalcAnt);
+                String resultadoS = String.valueOf(resultado);
+                lbTela.setText(resultadoS);
+            } else if (lbOperacao.getText().equals(" * ")) {
+                double resultado = o.multiplicar(numTela, numCalcAnt);
+                String resultadoS = String.valueOf(resultado);
+                lbTela.setText(resultadoS);
+            } else if (lbOperacao.getText().equals(" ^ ")) {
+                double resultado = o.expotenciar(numTela, numCalcAnt);
+                String resultadoS = String.valueOf(resultado);
+                lbTela.setText(resultadoS);
+            } else {
+                limparCampos();
+            }
         } catch (Exception e) {
             System.out.println("Ocorreu um Erro: " + e.getMessage());
         }
     }//GEN-LAST:event_btEnterActionPerformed
 
     private void btSubtracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSubtracaoActionPerformed
-        String numTela = lbTela.getText();
-        String replaceNumTela = numTela.replace(",", ".");
-        numAnterior = Double.parseDouble(replaceNumTela);
         try {
-            if (lbCalcAnterior.getText().contains(" - ")) {
-                System.out.println("já prescionado!");
-            } else {
-                lbCalcAnterior.setText(numTela + " - ");
+            if (lbOperacao.getText().isBlank()) {
+                lbCalcAnterior.setText(lbTela.getText());
+                lbOperacao.setText(" - ");
                 lbTela.setText("");
-                lbTela.setFont(new Font("Segoe UI", 0, 36));
-                lbErro.setText("");
+                enableNumeros();
+                disableOperacoes();
+            } else {
+                disableOperacoes();
             }
         } catch (Exception e) {
-            System.out.println("Ocorreu um Erro: " + e.getMessage());
+            JOptionPane.showMessageDialog(btSoma, "Algo deu Errado! \n" + e.getMessage(), "Erro Desconhecido! ", 0);
+            limparCampos();
         }
     }//GEN-LAST:event_btSubtracaoActionPerformed
 
     private void btMultiplicacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMultiplicacaoActionPerformed
-        String numTela = lbTela.getText();
-        String replaceNumTela = numTela.replace(",", ".");
-        numAnterior = Double.parseDouble(replaceNumTela);
         try {
-            if (lbCalcAnterior.getText().contains(" * ")) {
-                System.out.println("já prescionado!");
-            } else {
-                lbCalcAnterior.setText(numTela + " * ");
+            if (lbOperacao.getText().isBlank()) {
+                lbCalcAnterior.setText(lbTela.getText());
+                lbOperacao.setText(" * ");
                 lbTela.setText("");
-                lbTela.setFont(new Font("Segoe UI", 0, 36));
-                lbErro.setText("");
+                enableNumeros();
+                disableOperacoes();
+            } else {
+                disableOperacoes();
             }
         } catch (Exception e) {
-            System.out.println("Ocorreu um Erro: " + e.getMessage());
+            JOptionPane.showMessageDialog(btSoma, "Algo deu Errado! \n" + e.getMessage(), "Erro Desconhecido! ", 0);
+            limparCampos();
         }
     }//GEN-LAST:event_btMultiplicacaoActionPerformed
 
     private void btDivisaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDivisaoActionPerformed
-        String numTela = lbTela.getText();
-        String replaceNumTela = numTela.replace(",", ".");
-        numAnterior = Double.parseDouble(replaceNumTela);
         try {
-            if (lbCalcAnterior.getText().contains(" / ")) {
-                System.out.println("já prescionado!");
-            } else {
-                lbCalcAnterior.setText(numTela + " / ");
+            if (lbOperacao.getText().isBlank()) {
+                lbCalcAnterior.setText(lbTela.getText());
+                lbOperacao.setText(" / ");
                 lbTela.setText("");
-                lbTela.setFont(new Font("Segoe UI", 0, 36));
-                lbErro.setText("");
+                enableNumeros();
+                disableOperacoes();
+            } else {
+                disableOperacoes();
             }
         } catch (Exception e) {
-            System.out.println("Ocorreu um Erro: " + e.getMessage());
+            JOptionPane.showMessageDialog(btSoma, "Algo deu Errado! \n" + e.getMessage(), "Erro Desconhecido! ", 0);
+            limparCampos();
         }
     }//GEN-LAST:event_btDivisaoActionPerformed
 
@@ -626,28 +631,25 @@ public class Calculadora extends javax.swing.JFrame {
                 lbTela.setText(lbTela.getText() + ",");
             }
         } catch (Exception e) {
-            System.out.println("Erro: " + e.getMessage());
+            JOptionPane.showMessageDialog(btSoma, "Algo deu Errado! \n" + e.getMessage(), "Erro Desconhecido! ", 0);
+            limparCampos();
         }
     }//GEN-LAST:event_btVirgulaActionPerformed
 
     private void btExpoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExpoActionPerformed
-        String numTela = lbTela.getText();
-        String replaceNumTela = numTela.replace(",", ".");
-        numAnterior = Double.parseDouble(replaceNumTela);
         try {
-            if (lbCalcAnterior.getText().contains(" ** ")) {
-                System.out.println("já prescionado!");
+            if (lbOperacao.getText().isBlank()) {
+                lbCalcAnterior.setText(lbTela.getText());
+                lbOperacao.setText(" ^ ");
+                lbTela.setText("");
+                disableOperacoes();
+                enableNumeros();
             } else {
-                double resultado = numAnterior * numAnterior;
-                String resultTela = String.valueOf(resultado);
-                lbTela.setText(resultTela);
-                if (lbTela.getText().length() >= 8) {
-                    lbTela.setFont(new Font("Segoe UI", 0, 16));
-                numResult = resultTela;
-                }
+                disableOperacoes();
             }
         } catch (Exception e) {
-            System.out.println("Ocorreu um Erro: " + e.getMessage());
+            JOptionPane.showMessageDialog(btSoma, "Algo deu Errado! \n" + e.getMessage(), "Erro Desconhecido! ", 0);
+            limparCampos();
         }
     }//GEN-LAST:event_btExpoActionPerformed
 
@@ -656,20 +658,19 @@ public class Calculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_btLimpaActionPerformed
 
     private void btSomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSomaActionPerformed
-        String numTela = lbTela.getText();
-        String replaceNumTela = numTela.replace(",", ".");
-        numAnterior = Double.parseDouble(replaceNumTela);
         try {
-            if (lbCalcAnterior.getText().contains(" + ")) {
-                System.out.println("já prescionado!");
-            } else {
-                lbCalcAnterior.setText(numTela + " + ");
+            if (lbOperacao.getText().isBlank()) {
+                lbCalcAnterior.setText(lbTela.getText());
+                lbOperacao.setText(" + ");
                 lbTela.setText("");
-                lbTela.setFont(new Font("Segoe UI", 0, 36));
-                lbErro.setText("");
+                enableNumeros();
+                disableOperacoes();
+            } else {
+                disableOperacoes();
             }
         } catch (Exception e) {
-            System.out.println("Ocorreu um Erro: " + e.getMessage());
+            JOptionPane.showMessageDialog(btSoma, "Algo deu Errado! \n" + e.getMessage(), "Erro Desconhecido! ", 0);
+            limparCampos();
         }
     }//GEN-LAST:event_btSomaActionPerformed
 
