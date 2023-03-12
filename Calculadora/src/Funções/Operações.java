@@ -6,9 +6,9 @@ import javax.swing.JOptionPane;
  *
  * @author Gabriel de Souza
  */
-public class Função {
+public class Operações {
 
-    public Função() {}
+    public Operações() {}
     
     private int convertToInt(double numero) {
         int resultado = 0;
