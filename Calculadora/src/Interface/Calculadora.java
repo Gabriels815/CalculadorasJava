@@ -13,6 +13,9 @@ public class Calculadora extends javax.swing.JFrame {
     private double numAnterior = 0;
     private String numResult = "Sem Valor";
     
+    private Font fontPequena = new Font("Segoe UI", 0, 16);
+    private Font fontNormal = new Font("Segoe UI", 0, 36);
+    
     private Funções.Operações o = new Operações();
     
     public Calculadora() {
@@ -48,7 +51,7 @@ public class Calculadora extends javax.swing.JFrame {
         btVirgula = new javax.swing.JButton();
         btExpo = new javax.swing.JButton();
         btLimpa = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lbOperacao = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         Calculadora = new javax.swing.JMenu();
 
@@ -213,8 +216,8 @@ public class Calculadora extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setBorder(lbTela.getBorder());
+        lbOperacao.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbOperacao.setBorder(lbTela.getBorder());
 
         javax.swing.GroupLayout telaLayout = new javax.swing.GroupLayout(tela);
         tela.setLayout(telaLayout);
@@ -269,7 +272,7 @@ public class Calculadora extends javax.swing.JFrame {
                         .addGroup(telaLayout.createSequentialGroup()
                             .addComponent(lbCalcAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(lbOperacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         telaLayout.setVerticalGroup(
@@ -278,7 +281,7 @@ public class Calculadora extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(telaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lbCalcAnterior, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lbOperacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbTela, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -345,19 +348,61 @@ public class Calculadora extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void limparCampos() {
+        lbTela.setText("");
+        lbCalcAnterior.setText("");
+        lbOperacao.setText("");
+    }
+    
+    private void paintTela(int numero) {
+        String numStr = String.valueOf(numero);
+        lbTela.setText(lbTela.getText() + numStr);
+        if (lbTela.getText().length() >= 8) {
+            lbTela.setFont(fontPequena);
+        }
+    }
+    
+    private boolean testaTamanho() {
+        if (lbTela.getText().length() >= 25) {
+            lbErro.setText("* Número atingiu o limite na tela! ");
+            return true;
+        }
+        return false;
+    }
+    
+    private void disableNumeros() {
+        btNum0.setEnabled(false);
+        btNum1.setEnabled(false);
+        btNum2.setEnabled(false);
+        btNum3.setEnabled(false);
+        btNum4.setEnabled(false);
+        btNum5.setEnabled(false);
+        btNum6.setEnabled(false);
+        btNum7.setEnabled(false);
+        btNum8.setEnabled(false);
+        btNum9.setEnabled(false);
+        btVirgula.setEnabled(false);
+    }
+    
+    private void enableNumeros() {
+        btNum0.setEnabled(true);
+        btNum1.setEnabled(true);
+        btNum2.setEnabled(true);
+        btNum3.setEnabled(true);
+        btNum4.setEnabled(true);
+        btNum5.setEnabled(true);
+        btNum6.setEnabled(true);
+        btNum7.setEnabled(true);
+        btNum8.setEnabled(true);
+        btNum9.setEnabled(true);
+        btVirgula.setEnabled(true);
+    }
+    
     private void btNum1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNum1ActionPerformed
-        String tam = lbTela.getText();
         try {
-            if (numResult.equals(lbTela.getText())) {
-                lbTela.setText("");
-                lbCalcAnterior.setText("");
-            }
-            lbTela.setText(lbTela.getText() + "1");
-            if (tam.length() >= 8) {
-                lbTela.setFont(new Font("Segoe UI", 0, 16));
-            } 
-            if (tam.length() >= 25) {
-                lbErro.setText("* Parte do número não está vísivel!");
+            paintTela(1);
+            if (testaTamanho() == true) {
+                disableNumeros();
             }
         } catch (Exception e) {
             System.out.println("Ocorreu um Erro: " + e.getMessage());
@@ -725,9 +770,9 @@ public class Calculadora extends javax.swing.JFrame {
     private javax.swing.JButton btSoma;
     private javax.swing.JButton btSubtracao;
     private javax.swing.JButton btVirgula;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lbCalcAnterior;
     private javax.swing.JLabel lbErro;
+    private javax.swing.JLabel lbOperacao;
     private javax.swing.JFormattedTextField lbTela;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JPanel tela;
